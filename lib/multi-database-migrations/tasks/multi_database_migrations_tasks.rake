@@ -7,7 +7,7 @@ module MultiMigrations
   end
 
   def self.identify_configuration
-    if Rails.application.class.parent_name == ENV['DATABASE']
+    if Rails.application.class.parent_name.downcase == ENV['DATABASE']
       return Rails.env
     elsif ActiveRecord::Base.configurations.has_key?("#{ENV['DATABASE']}_#{Rails.env}")
       return "#{ENV['DATABASE']}_#{Rails.env}"
